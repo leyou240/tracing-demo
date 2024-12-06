@@ -1,0 +1,33 @@
+dubbo:
+  tracing:
+    # dubbo的tracing需与springboot的tracing一起开启
+    enabled: true
+    sampling:
+      probability: 0.5
+    propagation:
+      type: W3C
+    tracing-exporter:
+      otlp-config:
+        endpoint: http://localhost:4317
+        timeout: 10s
+        compression-method: gzip
+management:
+  otlp:
+    tracing:
+      endpoint: http://localhost:4317
+      compression: gzip
+      export:
+        enabled: true
+  #    logging:
+  #      export:
+  #        enabled: true
+  #      endpoint: http://localhost:4317
+  #    metrics:
+  #      export:
+  #        enabled: true
+  #        url: http://localhost:4318/v1/metrics
+  tracing:
+    propagation:
+      produce: W3C
+    sampling:
+      probability: 0.5
